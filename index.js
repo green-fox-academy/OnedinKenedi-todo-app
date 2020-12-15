@@ -14,11 +14,16 @@ if (Object.keys(args).length < 2) {
 
 if (args.l) {
     const content = fs.readFileSync('tasks.txt', 'utf-8');
-    const todos = content.split('\n');
-    todos.forEach((todo, i) => {
-        if (todo[0] === '/') {
+    if (content.length === 0) {
+        console.log('Nincs mára tennivalód! :)');
+    }
+    else {   
+        const todos = content.split('\n');
+        todos.forEach((todo, i) => {
+            if (todo[0] === '/') {
             todo = todo.slice(1);
-        }
+            }
         console.log(`${i + 1}. ${todo}`);
     });
+    }
 }
