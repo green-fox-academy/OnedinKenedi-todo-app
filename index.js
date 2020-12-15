@@ -28,6 +28,8 @@ if (args.l) {
     }
 };
 
+// add new task -a " "
+
 function addTask(todo) {
 	const content = fs.readFileSync('tasks.txt', 'utf-8');
 	if (content.length === 0) {
@@ -41,4 +43,20 @@ if (args.a) {
     console.log('Nem lehetséges új feladat hozzáadása: nincs megadva a feladat!');
 } else if (typeof args.a === 'string') {
     addTask(args.a);
-};;
+};
+
+// remove task -r number
+
+function removeTodo(index) {
+	const content = fs.readFileSync('tasks.txt', 'utf-8');
+	const splitContent = content.split('\n');
+
+	splitContent.splice(index - 1, 1);
+	const newContent = splitContent.join('\n');
+	fs.writeFileSync('tasks.txt', newContent);
+};
+
+if (typeof args.r === 'number') {
+    removeTodo(args.r);
+}
+
