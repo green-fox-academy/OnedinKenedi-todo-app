@@ -3,8 +3,6 @@ import fs from 'fs';
 
 const args = minimist(process.argv);
 
-console.log(args)
-
 // manual
 
 if (
