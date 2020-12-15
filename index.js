@@ -1,3 +1,5 @@
+'use strict'
+
 import minimist from "minimist";
 import fs from 'fs';
 
@@ -49,7 +51,7 @@ if (args.a) {
 
 function removeTodo(index) {
 	const content = fs.readFileSync('tasks.txt', 'utf-8');
-	const splitContent = content.split('\n');
+    const splitContent = content.split('\n');
 
 	splitContent.splice(index - 1, 1);
 	const newContent = splitContent.join('\n');
@@ -58,5 +60,10 @@ function removeTodo(index) {
 
 if (typeof args.r === 'number') {
     removeTodo(args.r);
-}
-
+} else if (index > splitContent.length) {
+    console.log('Nem lehetséges az eltávolítás: túlindexelési probléma adódott!');
+} else if (typeof args.r === 'string') {
+    console.log('Nem lehetséges a feladat végrehajtása: a megadott index nem szám!');
+} else if (args.r) {
+    console.log('Nem lehetséges az eltávolítás: nem adott meg indexet!');
+} 
