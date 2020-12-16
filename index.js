@@ -55,13 +55,15 @@ function removeTodo(index) {
 
 	splitContent.splice(index - 1, 1);
 	const newContent = splitContent.join('\n');
-	fs.writeFileSync('tasks.txt', newContent);
+    fs.writeFileSync('tasks.txt', newContent);
+    
+    if (index > splitContent.length) {
+        console.log('Nem lehetséges az eltávolítás: túlindexelési probléma adódott!');
+    }
 };
 
 if (typeof args.r === 'number') {
     removeTodo(args.r);
-} else if (index > splitContent.length) {
-    console.log('Nem lehetséges az eltávolítás: túlindexelési probléma adódott!');
 } else if (typeof args.r === 'string') {
     console.log('Nem lehetséges a feladat végrehajtása: a megadott index nem szám!');
 } else if (args.r) {
